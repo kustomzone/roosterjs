@@ -3,6 +3,7 @@ import BeforePasteEvent from './BeforePasteEvent';
 import ContentChangedEvent from './ContentChangedEvent';
 import EditorReadyEvent from './EditorReadyEvent';
 import ExtractContentEvent from './ExtractContentEvent';
+import TempFormatStateChagnedEvent from './TempFormatStateChagnedEvent';
 import { PluginDomEvent } from './PluginDomEvent';
 
 /**
@@ -15,4 +16,5 @@ export type PluginEvent =
     | ExtractContentEvent
     | PluginDomEvent
     | EditorReadyEvent
-    | BeforeDisposeEvent;
+    | BeforeDisposeEvent
+    | TempFormatStateChagnedEvent;

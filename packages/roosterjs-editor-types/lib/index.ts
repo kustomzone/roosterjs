@@ -43,7 +43,12 @@ export { default as BlockElement } from './interface/BlockElement';
 export { default as ClipboardData } from './interface/ClipboardData';
 export { default as ClipboardItems } from './interface/ClipboardItems';
 export { default as DefaultFormat } from './interface/DefaultFormat';
-export { default as FormatState } from './interface/FormatState';
+export {
+    default as FormatState,
+    BrowserManagedFormatState,
+    EditorManagedFormatState,
+    DomBasedFormatState,
+} from './interface/FormatState';
 export { default as InlineElement } from './interface/InlineElement';
 export { default as InsertOption } from './interface/InsertOption';
 export { default as LinkData } from './interface/LinkData';

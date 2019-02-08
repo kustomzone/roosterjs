@@ -63,4 +63,10 @@ export const enum PluginEventType {
      * HTML Input / TextInput event
      */
     Input,
+
+    /**
+     * Browser managed format state (Bold, Italic, Underline, Superscript, Subscript, Strikethrough) which is recorded by browser
+     * and no DOM change before user type something
+     */
+    BrowserManagedFormatStateChanged,
 }

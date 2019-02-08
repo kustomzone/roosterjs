@@ -1,5 +1,6 @@
-import { ChangeSource, DocumentCommand } from 'roosterjs-editor-types';
+import { ChangeSource, DocumentCommand, PluginEventType } from 'roosterjs-editor-types';
 import { Editor } from 'roosterjs-editor-core';
+import { getBrowserManagedFormatState } from '../format/getFormatState';
 
 /**
  * Execute a document command
@@ -18,6 +19,10 @@ export default function execCommand(editor: Editor, command: DocumentCommand) {
     if (range && range.collapsed) {
         editor.addUndoSnapshot();
         formatter();
+        editor.triggerEvent({
+            eventType: PluginEventType.BrowserManagedFormatStateChanged,
+            newFormatState: getBrowserManagedFormatState(editor),
+        });
     } else {
         editor.addUndoSnapshot(formatter, ChangeSource.Format);
     }
