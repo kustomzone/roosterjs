@@ -41,6 +41,8 @@ export default function applyInlineStyle(editor: Editor, callback: (element: HTM
             applyTextStyle(node, callback);
             editor.select(node, PositionType.End);
         }
+
+        editor.restoreBrowserManagedFormatState();
     } else {
         // This is start and end node that get the style. The start and end needs to be recorded so that selection
         // can be re-applied post-applying style

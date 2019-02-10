@@ -28,12 +28,13 @@ const EventTypeMap = {
     [PluginEventType.MouseDown]: 'MouseDown',
     [PluginEventType.MouseUp]: 'MouseUp',
     [PluginEventType.Input]: 'Input',
+    [PluginEventType.BrowserManagedFormatChanged]: 'BrowserManagedFormatChanged',
 };
 
 export default class EventViewPane extends React.Component<
     SidePaneElementProps,
     EventViewPaneState
-    > {
+> {
     private events: EventEntry[] = [];
     private displayCount = React.createRef<HTMLSelectElement>();
     private lasteIndex = 0;
@@ -147,6 +148,8 @@ export default class EventViewPane extends React.Component<
                         ))}
                     </span>
                 );
+            case PluginEventType.BrowserManagedFormatChanged:
+                return <span>FormatName={event.formatName}</span>;
         }
         return null;
     }

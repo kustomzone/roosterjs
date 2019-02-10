@@ -1,31 +1,17 @@
 import { cacheGetElementAtCursor, Editor } from 'roosterjs-editor-core';
-import { getComputedStyles, getTagOfNode, Position } from 'roosterjs-editor-dom';
 import {
-    DocumentCommand,
+    getComputedStyles,
+    getTagOfNode,
+    Position,
+    getBrowserManagedFormatState,
+} from 'roosterjs-editor-dom';
+import {
     FormatState,
     PluginEvent,
     QueryScope,
-    BrowserManagedFormatState,
     DomBasedFormatState,
     EditorManagedFormatState,
 } from 'roosterjs-editor-types';
-
-/**
- * Get Browser Managed Format State at cursor.
- * @param editor The editor instance
- * @returns A BrowserManagedFormatState object
- */
-export function getBrowserManagedFormatState(editor: Editor): BrowserManagedFormatState {
-    let document = editor.getDocument();
-    return {
-        isBold: document.queryCommandState(DocumentCommand.Bold),
-        isItalic: document.queryCommandState(DocumentCommand.Italic),
-        isUnderline: document.queryCommandState(DocumentCommand.Underline),
-        isStrikeThrough: document.queryCommandState(DocumentCommand.StrikeThrough),
-        isSubscript: document.queryCommandState(DocumentCommand.Subscript),
-        isSuperscript: document.queryCommandState(DocumentCommand.Superscript),
-    };
-}
 
 /**
  * Get DOM based Format State at cursor
@@ -82,7 +68,7 @@ export function getEditorManagedFormatState(editor: Editor): EditorManagedFormat
  */
 export default function getFormatState(editor: Editor, event?: PluginEvent): FormatState {
     return {
-        ...getBrowserManagedFormatState(editor),
+        ...getBrowserManagedFormatState(editor.getDocument()),
         ...getDomBasedFormatState(editor, event),
         ...getEditorManagedFormatState(editor),
     };

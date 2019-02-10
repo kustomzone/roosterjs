@@ -1,15 +1,16 @@
-import { ChangeSource, DocumentCommand, PluginEventType } from 'roosterjs-editor-types';
+import { BrowserManagedFormatCommandMap } from 'roosterjs-editor-dom';
 import { Editor } from 'roosterjs-editor-core';
-import { getBrowserManagedFormatState } from '../format/getFormatState';
+import {
+    ChangeSource,
+    DocumentCommand,
+    PluginEventType,
+    BrowserManagedFormatNames,
+} from 'roosterjs-editor-types';
 
 /**
  * Execute a document command
  * @param editor The editor instance
  * @param command The command to execute
- * @param addUndoSnapshotWhenCollapsed Optional, set to true to always add undo snapshot even current selection is collapsed.
- * Default value is false.
- * @param doWorkaroundForList Optional, set to true to do workaround for list in order to keep current format.
- * Default value is false.
  */
 export default function execCommand(editor: Editor, command: DocumentCommand) {
     editor.focus();
@@ -19,10 +20,17 @@ export default function execCommand(editor: Editor, command: DocumentCommand) {
     if (range && range.collapsed) {
         editor.addUndoSnapshot();
         formatter();
-        editor.triggerEvent({
-            eventType: PluginEventType.BrowserManagedFormatStateChanged,
-            newFormatState: getBrowserManagedFormatState(editor),
-        });
+
+        let formatName = (<BrowserManagedFormatNames[]>(
+            Object.keys(BrowserManagedFormatCommandMap)
+        )).filter(key => BrowserManagedFormatCommandMap[key] == command)[0];
+
+        if (formatName) {
+            editor.triggerEvent({
+                eventType: PluginEventType.BrowserManagedFormatChanged,
+                formatName,
+            });
+        }
     } else {
         editor.addUndoSnapshot(formatter, ChangeSource.Format);
     }

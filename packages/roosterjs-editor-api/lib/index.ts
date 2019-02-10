@@ -7,7 +7,11 @@ export {
 } from './format/clearBlockFormat';
 export { default as clearFormat } from './format/clearFormat';
 export { default as createLink } from './format/createLink';
-export { default as getFormatState } from './format/getFormatState';
+export {
+    default as getFormatState,
+    getDomBasedFormatState,
+    getEditorManagedFormatState,
+} from './format/getFormatState';
 export { default as insertImage } from './format/insertImage';
 export { default as insertTable } from './table/insertTable';
 export { default as editTable } from './table/editTable';

@@ -35,6 +35,11 @@ export interface BrowserManagedFormatState {
 }
 
 /**
+ * Names of browser managed formats
+ */
+export type BrowserManagedFormatNames = keyof BrowserManagedFormatState;
+
+/**
  * Format states can be retrieved from DOM
  */
 export interface DomBasedFormatState {

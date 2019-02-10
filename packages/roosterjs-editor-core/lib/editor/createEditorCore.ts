@@ -1,4 +1,5 @@
 import attachDomEvent from '../coreAPI/attachDomEvent';
+import BrowserManagedFormat from '../corePlugins/BrowserManagedFormat';
 import DOMEventPlugin from '../corePlugins/DOMEventPlugin';
 import EditorCore, { CoreApiMap, CorePlugins } from '../interfaces/EditorCore';
 import EditorOptions from '../interfaces/EditorOptions';
@@ -30,11 +31,13 @@ export default function createEditorCore(
         mouseUp: new MouseUpPlugin(),
         domEvent: new DOMEventPlugin(options.disableRestoreSelectionOnFocus),
         firefoxTypeAfterLink: Browser.isFirefox && new FirefoxTypeAfterLink(),
+        browserManagedFormat: new BrowserManagedFormat(),
     };
     let allPlugins: EditorPlugin[] = [
         corePlugins.typeInContainer,
         corePlugins.edit,
         corePlugins.mouseUp,
+        corePlugins.browserManagedFormat,
         ...(options.plugins || []),
         corePlugins.firefoxTypeAfterLink,
         corePlugins.undo,

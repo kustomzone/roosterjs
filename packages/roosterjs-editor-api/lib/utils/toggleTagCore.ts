@@ -85,6 +85,8 @@ export default function toggleTagCore<T extends keyof HTMLElementTagNameMap>(
             editor.select(result);
         }
 
+        editor.restoreBrowserManagedFormatState();
+
         return result;
     }, ChangeSource.Format);
 }

@@ -21,6 +21,10 @@ export { default as contains } from './utils/contains';
 export { default as extractClipboardEvent } from './utils/extractClipboardEvent';
 export { default as findClosestElementAncestor } from './utils/findClosestElementAncestor';
 export { default as fromHtml } from './utils/fromHtml';
+export {
+    default as getBrowserManagedFormatState,
+    BrowserManagedFormatCommandMap,
+} from './utils/getBrowserManagedFormatState';
 export { default as getComputedStyles, getComputedStyle } from './utils/getComputedStyles';
 export { default as getTagOfNode } from './utils/getTagOfNode';
 export { default as isBlockElement } from './utils/isBlockElement';

@@ -74,7 +74,8 @@ export default class Editor {
             this.core.api.attachDomEvent(this.core, 'keydown', PluginEventType.KeyDown),
             this.core.api.attachDomEvent(this.core, 'keyup', PluginEventType.KeyUp),
             this.core.api.attachDomEvent(this.core, 'mousedown', PluginEventType.MouseDown),
-            this.core.api.attachDomEvent(this.core,
+            this.core.api.attachDomEvent(
+                this.core,
                 !Browser.isIE ? 'input' : 'textinput',
                 PluginEventType.Input
             ),
@@ -102,6 +103,7 @@ export default class Editor {
             this.core.document.execCommand(DocumentCommand.EnableInlineTableEditing, false, <
                 string
             >(<any>false));
+            this.core.document.execCommand(DocumentCommand.DefaultParagraphSeparator, false, 'div');
         } catch (e) {}
 
         // 9. Let plugins know that we are ready
@@ -834,6 +836,14 @@ export default class Editor {
      */
     public addContentEditFeature(feature: GenericContentEditFeature<PluginEvent>) {
         this.core.corePlugins.edit.addFeature(feature);
+    }
+
+    /**
+     * Some API can change the DOM structure, and temporary format state (B/I/U/...) will be lost.
+     * Call this function can restore the temporary format state
+     */
+    public restoreBrowserManagedFormatState() {
+        return this.core.corePlugins.browserManagedFormat.restoreBrowserManagedFormatState();
     }
 
     //#endregion

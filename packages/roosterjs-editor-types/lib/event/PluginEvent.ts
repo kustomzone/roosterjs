@@ -1,9 +1,9 @@
 import BeforeDisposeEvent from './BeforeDisposeEvent';
 import BeforePasteEvent from './BeforePasteEvent';
+import BrowserManagedFormatChangedEvent from './BrowserManagedFormatChangedEvent';
 import ContentChangedEvent from './ContentChangedEvent';
 import EditorReadyEvent from './EditorReadyEvent';
 import ExtractContentEvent from './ExtractContentEvent';
-import TempFormatStateChagnedEvent from './TempFormatStateChagnedEvent';
 import { PluginDomEvent } from './PluginDomEvent';
 
 /**
@@ -17,4 +17,4 @@ export type PluginEvent =
     | PluginDomEvent
     | EditorReadyEvent
     | BeforeDisposeEvent
-    | TempFormatStateChagnedEvent;
+    | BrowserManagedFormatChangedEvent;

@@ -1,3 +1,4 @@
+import BrowserManagedFormat from '../corePlugins/BrowserManagedFormat';
 import DOMEventPlugin from '../corePlugins/DOMEventPlugin';
 import EditorPlugin from './EditorPlugin';
 import EditPlugin from '../corePlugins/EditPlugin';
@@ -21,6 +22,7 @@ export interface CorePlugins {
     readonly mouseUp: MouseUpPlugin;
     readonly domEvent: DOMEventPlugin;
     readonly firefoxTypeAfterLink: FirefoxTypeAfterLink;
+    readonly browserManagedFormat: BrowserManagedFormat;
 }
 
 /**
